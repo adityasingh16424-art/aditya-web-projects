@@ -1,123 +1,75 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aditya Store — E-Commerce</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-    body {
-      background: #f5f6f8;
-      color: #1f2937;
-    }
-    header {
-      background: #111827;
-      color: #fff;
-      padding: 16px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    nav a {
-      color: #e5e7eb;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
-    }
-    .hero {
-      padding: 48px 32px;
-      text-align: center;
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-    }
-    .hero h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      color: #6b7280;
-      margin-bottom: 20px;
-    }
-    .btn {
-      display: inline-block;
-      background: #2563eb;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-    }
-    .products {
-      max-width: 1000px;
-      margin: 32px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-    .card h3 {
-      margin-bottom: 8px;
-    }
-    .price {
-      font-weight: bold;
-      color: #111827;
-      margin-bottom: 12px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Robine – Curated tech, apparel and accessories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">Aditya Store</div>
-    <nav>
-      <a href="#products">Products</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<header class="nav glass">
+  <a class="logo" href="#top">KINETIC STUDIO</a>
+  <nav class="tabs" id="tabs" aria-label="Categories">
+    <button class="tab active" data-cat="All">All</button>
+    <button class="tab" data-cat="Tech">Tech</button>
+    <button class="tab" data-cat="Apparel">Apparel</button>
+    <button class="tab" data-cat="Accessories">Accessories</button>
+  </nav>
+  <div class="nav-right">
+    <input id="search" type="search" placeholder="Search products" aria-label="Search products">
+    <button id="cartBtn" class="cart-btn" aria-label="Open cart">Cart <b id="badge">0</b></button>
+  </div>
+</header>
 
+<main id="top">
   <section class="hero">
-    <h1>नए कलेक्शन के साथ अपना स्टोर शुरू करें</h1>
-    <p>बेहतरीन क्वालिटी के प्रोडक्ट्स सीधे आपके स्टोर पर।</p>
-    <a href="#products" class="btn">Products देखें</a>
+    <div class="hero-copy">
+      <h1>Objects with momentum.</h1>
+      <p>Nine pieces of tech, apparel and accessories, picked for how they feel in motion. Drag the form to the right to spin it.</p>
+      <a class="btn" href="#shop">Shop the collection</a>
+    </div>
+    <div class="stage"><canvas id="stage" aria-label="Interactive 3D sculpture. Drag to rotate." role="img"></canvas></div>
   </section>
 
-  <section id="products" class="products">
-    <div class="card">
-      <h3>Classic T-Shirt</h3>
-      <div class="price">₹599</div>
-      <button class="btn" onclick="addToCart('Classic T-Shirt')">Add to Cart</button>
-    </div>
-    <div class="card">
-      <h3>Wireless Earbuds</h3>
-      <div class="price">₹1,299</div>
-      <button class="btn" onclick="addToCart('Wireless Earbuds')">Add to Cart</button>
-    </div>
-    <div class="card">
-      <h3>Smart Watch</h3>
-      <div class="price">₹1,999</div>
-      <button class="btn" onclick="addToCart('Smart Watch')">Add to Cart</button>
-    </div>
+  <section class="shop" id="shop">
+    <h2>The collection</h2>
+    <div id="grid" class="grid"></div>
+    <p id="empty" class="empty" hidden>Nothing matches that search. Clear it or pick another category.</p>
   </section>
+</main>
 
-  <script>
-    function addToCart(itemName) {
-      alert(itemName + " cart mein add ho gaya!");
-    }
-  </script>
+<footer class="foot">
+  <div>
+    <div class="logo">KINETIC STUDIO</div>
+    <p>A small studio curating well-made objects. Free shipping over $150. 30-day returns.</p>
+    <p class="dim">hello@kineticstudio.example</p>
+  </div>
+  <form id="news" class="news">
+    <label for="email">Get new drops by email</label>
+    <div><input id="email" type="email" required placeholder="you@example.com"><button class="btn" type="submit">Subscribe</button></div>
+    <p id="newsMsg" class="dim" role="status"></p>
+  </form>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+
+<aside id="drawer" class="drawer glass" aria-hidden="true" aria-label="Shopping cart">
+  <div class="drawer-head"><h3>Your cart</h3><button id="closeCart" class="x" aria-label="Close cart">✕</button></div>
+  <ul id="items" class="items"></ul>
+  <div class="drawer-foot">
+    <div class="sub"><span>Subtotal</span><b id="subtotal">$0.00</b></div>
+    <button id="checkout" class="btn wide">Checkout</button>
+  </div>
+</aside>
+
+<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-box glass"><button class="x" id="closeModal" aria-label="Close">✕</button><div id="modalBody"></div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
