@@ -1,0 +1,69 @@
+erDiagram
+  %% ── Identity ──
+  User ||--o{ Account : "OAuth links"
+  User ||--o{ Session : has
+  User ||--o{ PasswordResetToken : requests
+  User ||--o{ Address : saves
+  User ||--o| Seller : "may own"
+  User ||--o| Cart : has
+  User ||--o| Wishlist : has
+  User ||--o{ Notification : receives
+  User ||--o{ RecentlyViewed : views
+
+  %% ── Catalog ──
+  Category ||--o{ Category : "parent of"
+  Category ||--o{ Product : contains
+  Brand |o--o{ Product : makes
+  Seller ||--o{ Product : sells
+  Product ||--o{ ProductVariant : "has variants"
+  Product ||--o{ ProductImage : "has images"
+  ProductVariant |o--o{ ProductImage : "colour images"
+  ProductVariant ||--o| Inventory : "stock of"
+  ProductVariant ||--o{ InventoryMovement : "stock history"
+  Product ||--o{ Review : "reviewed in"
+  User ||--o{ Review : writes
+  Product ||--o{ RecentlyViewed : "viewed as"
+
+  %% ── Cart & wishlist ──
+  Cart ||--o{ CartItem : contains
+  ProductVariant ||--o{ CartItem : "added as"
+  Wishlist ||--o{ WishlistItem : contains
+  Product ||--o{ WishlistItem : "saved as"
+
+  %% ── Orders ──
+  User ||--o{ Order : places
+  Order ||--|{ OrderItem : contains
+  Product ||--o{ OrderItem : "sold as"
+  ProductVariant ||--o{ OrderItem : "sold as"
+  Order ||--o{ OrderStatusHistory : "status log"
+  OrderItem |o--o| Review : "verifies"
+  Order ||--o{ Shipment : "shipped via"
+  Shipment ||--o{ ShipmentEvent : "tracking events"
+
+  %% ── Coupons ──
+  Coupon |o--o{ Order : "applied to"
+  Coupon ||--o{ CouponRedemption : "redeemed in"
+  User ||--o{ CouponRedemption : redeems
+  Order ||--o| CouponRedemption : records
+
+  %% ── Payments & refunds ──
+  Order ||--o{ Payment : "paid by"
+  Payment ||--o{ PaymentTransaction : "ledger"
+  Order ||--o{ Refund : "refunded by"
+  Payment |o--o{ Refund : "refunds"
+  Order ||--o{ ReturnRequest : "returned via"
+  OrderItem ||--o{ ReturnRequest : "returned item"
+  User ||--o{ ReturnRequest : files
+  ReturnRequest |o--o{ Refund : "triggers"
+
+  %% ── Standalone: Auth tokens, CMS, platform ──
+  VerificationToken
+  WebhookEvent
+  PlatformSettings
+  AuditLog
+  Banner
+  HomepageSection
+  Testimonial
+  ContentPage
+  NewsletterSubscriber
+  SearchTerm
